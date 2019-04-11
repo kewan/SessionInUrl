@@ -1,0 +1,27 @@
+{
+    "name": "kewan/session-in-url",
+    "description": "Laravel package for passing session ids in url instead of cookies",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kewan",
+            "email": "kewan@crazylogical.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kewan\\SessionInUrl\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/support": "^5.7",
+        "illuminate/database": "^5.7",
+        "illuminate/http": "^5.7",
+        "illuminate/routing": "^5.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0",
+        "mockery/mockery": "dev-master",
+        "fzaninotto/faker": "^1.4"
+    }
+}
