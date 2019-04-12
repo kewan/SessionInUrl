@@ -2,10 +2,9 @@
 
 namespace Kewan\SessionInUrl\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Kewan\SessionInUrl\Routing\UrlGenerator;
 
-class UrlServiceProvider extends ServiceProvider
+class RoutingServiceProvider extends Illuminate\Routing\RoutingServiceProvider
 {
     public function register()
     {
