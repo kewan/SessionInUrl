@@ -4,16 +4,43 @@ namespace Kewan\SessionInUrl\Routing;
 
 class UrlGenerator extends \Illuminate\Routing\UrlGenerator
 {
-    public function formatParameters($parameters)
+    public function to($path, $extra = [], $secure = null)
     {
-        $parameters = parent::formatParameters($parameters);
+        return $this->appendSid(parent::to($path, $extra, $secure));
+    }
 
+    protected function toRoute($route, $parameters, $absolute)
+    {
+        return $this->appendSid(parent::toRoute($route, $parameters, $absolute));
+    }
+
+
+//    public function formatParameters($parameters)
+//    {
+//        $parameters = parent::formatParameters($parameters);
+//
+//        $session = $this->request->session();
+//
+//        if (!array_key_exists($session->getName(), $parameters)) {
+//            $parameters[$session->getName()] = $session->getId();
+//        }
+//
+//        return $parameters;
+//    }
+
+    protected function appendSid($url)
+    {
         $session = $this->request->session();
-        
-        if (!array_key_exists($session->getName(), $parameters)) {
-            $parameters[$session->getName()] = $session->getId();
+
+        // already in session?
+        if (strpos($url, $session->getName()) !== false) {
+            return $url;
         }
 
-        return $parameters;
+        $separator = (strpos($url, '?') !== false) ? '&' : '?';
+
+        $url .= $separator . $session->getName() . '=' . $session->getId();
+
+        return $url;
     }
 }
