@@ -13,21 +13,7 @@ class UrlGenerator extends \Illuminate\Routing\UrlGenerator
     {
         return $this->appendSid(parent::toRoute($route, $parameters, $absolute));
     }
-
-
-//    public function formatParameters($parameters)
-//    {
-//        $parameters = parent::formatParameters($parameters);
-//
-//        $session = $this->request->session();
-//
-//        if (!array_key_exists($session->getName(), $parameters)) {
-//            $parameters[$session->getName()] = $session->getId();
-//        }
-//
-//        return $parameters;
-//    }
-
+    
     protected function appendSid($url)
     {
         $session = $this->request->session();
