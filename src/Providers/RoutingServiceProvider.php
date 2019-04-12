@@ -4,7 +4,7 @@ namespace Kewan\SessionInUrl\Providers;
 
 use Kewan\SessionInUrl\Routing\UrlGenerator;
 
-class RoutingServiceProvider extends Illuminate\Routing\RoutingServiceProvider
+class RoutingServiceProvider extends \Illuminate\Routing\RoutingServiceProvider
 {
     public function register()
     {
