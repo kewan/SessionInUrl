@@ -13,9 +13,13 @@ class UrlGenerator extends \Illuminate\Routing\UrlGenerator
     {
         return $this->appendSid(parent::toRoute($route, $parameters, $absolute));
     }
-    
+
     protected function appendSid($url)
     {
+        if (!$this->request->hasSession()) {
+            return $url;
+        }
+
         $session = $this->request->session();
 
         // already in session?
