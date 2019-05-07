@@ -13,6 +13,11 @@ class StartSession extends \Illuminate\Session\Middleware\StartSession
 
     public function getSession(Request $request)
     {
+        //don't do this for nova
+        if (preg_match('/^admin|nova/', $request->path())) {
+            return parent::getSession($request);
+        }
+
         /** @var Session $session */
         $session = $this->manager->driver();
         $session->setId($request->input($session->getName()));
